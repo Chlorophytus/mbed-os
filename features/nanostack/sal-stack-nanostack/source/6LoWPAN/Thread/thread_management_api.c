@@ -398,7 +398,7 @@ int thread_management_set_commissioning_data_timestamp(int8_t instance_id, uint6
     ptr = payload;
     ptr = thread_meshcop_tlv_data_write(ptr, MESHCOP_TLV_ACTIVE_TIME_STAMP, 8, (uint8_t *)&time); //TODO not network order?
 
-    tr_debug("thread management set commissioning timestamp %"PRIu64, time);
+    tr_debug("thread management set commissioning timestamp %lu", time);
     coap_service_request_send(this->coap_service_id, COAP_REQUEST_OPTIONS_NONE, this->destination_address, this->destination_port,
                               COAP_MSG_TYPE_CONFIRMABLE, COAP_MSG_CODE_REQUEST_POST, THREAD_URI_MANAGEMENT_SET, COAP_CT_OCTET_STREAM, payload, ptr - payload, thread_management_recv_set_response_cb);
     return 0;

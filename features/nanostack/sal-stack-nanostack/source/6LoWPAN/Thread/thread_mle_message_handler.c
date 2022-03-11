@@ -621,7 +621,7 @@ static void thread_parse_data_response(protocol_interface_info_entry_t *cur, mle
     // if not matching must send data request again
     if (thread_joiner_application_active_timestamp_get(cur->id) < active_timestamp
             || thread_joiner_application_pending_config_timestamp_get(cur->id) < pending_timestamp) {
-        tr_debug("Request new network data with configurations active %"PRIX64", %"PRIX64" Pending %"PRIX64", %"PRIX64,
+        tr_debug("Request new network data with configurations active %X, %X Pending %X, %X",
                  active_timestamp, thread_joiner_application_active_timestamp_get(cur->id),
                  pending_timestamp, thread_joiner_application_pending_config_timestamp_get(cur->id));
         thread_network_data_request_send(cur, mle_msg->packet_src_address, true);
@@ -811,7 +811,7 @@ static void thread_host_child_update_request_process(protocol_interface_info_ent
     // Check if operational datasets are in sync
     if (thread_joiner_application_active_timestamp_get(cur->id) < active_timestamp ||
             thread_joiner_application_pending_config_timestamp_get(cur->id) < pending_timestamp) {
-        tr_debug("Request new network data with configurations active %"PRIX64", %"PRIX64" Pending %"PRIX64", %"PRIX64,
+        tr_debug("Request new network data with configurations active %X, %X Pending %X, %X",
                  active_timestamp, thread_joiner_application_active_timestamp_get(cur->id),
                  pending_timestamp, thread_joiner_application_pending_config_timestamp_get(cur->id));
         data_request_needed = true;
